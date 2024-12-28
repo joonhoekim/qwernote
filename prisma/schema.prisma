@@ -1,0 +1,172 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ----- 아래: Blog 관련 비지니스 모델들 -----
+// User > Category > Post > Comment
+
+model Category {
+  id     String @id @default(cuid())
+  name   String
+  slug   String // for url routing
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  posts  Post[]
+
+  // time
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, slug])
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String
+  content   String
+  published Boolean? @default(false)
+
+  // relation
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  categoryId String
+  category   Category  @relation(fields: [categoryId], references: [id])
+  comments   Comment[]
+
+  // time
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, categoryId, slug])
+}
+
+model Comment {
+  id       String  @id @default(cuid())
+  content  String
+  parentId String? // 부모 댓글
+
+  isDeleted Boolean @default(false)
+
+  //relation
+  replies Comment[] @relation("CommentToComment") // 하위 댓글들
+  parent  Comment?  @relation("CommentToComment", fields: [parentId], references: [id], onDelete: Restrict)
+  userId  String
+  user    User      @relation(fields: [userId], references: [id])
+  postId  String
+  post    Post      @relation(fields: [postId], references: [id])
+
+  // time
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([postId])
+  @@index([userId])
+  @@index([parentId])
+}
+
+// ----- 위: Blog 관련 비지니스 모델들 -----
+
+// ----- 아래 모델은 next-auth prisma adapter를 위해 필요함 -----
+// reference: https://next-auth.js.org/v3/adapters/prisma
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  //time
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  role          String    @default("user")
+
+  // time (required)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 애플리케이션에서 사용하려는 필드 확장
+  bio        String?
+  handle     String       @unique @default(cuid()) // = nickname, = slug
+  categories Category[]
+  posts      Post[]
+  comments   Comment[]
+  files      FileUpload[] // MinIO fileUpload
+
+  @@index([id])
+  @@index([handle])
+}
+
+model VerificationRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
+}
+
+// ----- 위 모델은 next-auth prisma adapter를 위해 필요함 ----------
+
+// ----- MinIO 를 위한 모델 -----
+model FileUpload {
+  id         String   @id @default(cuid())
+  userId     String
+  fileName   String
+  fileType   String
+  fileSize   Int
+  bucketName String
+  objectName String
+  url        String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+// ----- MinIO 를 위한 모델 -----

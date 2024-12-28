@@ -1,0 +1,3 @@
+[submodule "nextjs-blog-submodule"]
+	path = nextjs-blog-submodule
+	url = https://github.com/joonhoekim/nextjs-blog-submodule.git
