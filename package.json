@@ -6,7 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "npm exec prisma generate",
+    "db:push": "npm exec prisma db push",
+    "db:studio": "npm exec prisma studio",
+    "db:seed": "npm exec prisma db seed",
+    "db:sync": "npm exec prisma generate && npm exec prisma db push",
+    "db:reset": "npm exec prisma db push --force-reset && npm exec prisma db seed",
+    "db:migrate": "npm exec prisma migrate dev",
+    "db:deploy": "npm exec prisma migrate deploy",
+    "db:status": "npm exec prisma migrate status",
+    "db:diff": "npm exec prisma migrate diff",
+    "setup": "npm install && npm run db:sync && npm run db:seed"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
