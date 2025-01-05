@@ -1,3 +1,7 @@
+// home layout
+// home 은 큐레이션을 위한 경로이다.
+//
+
 import type { Metadata } from "next";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/home-sidebar";

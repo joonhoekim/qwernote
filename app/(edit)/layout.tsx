@@ -1,3 +1,8 @@
+// edit layout
+// edit 기능을 위한 layout 이다.
+// 편집 기능을 위해 필요한 공통 코드들을 작성한다.
+// 예를 들면, 사이드바에 관련된 코드들이다.
+
 import type { Metadata } from "next";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/edit-sidebar/EditSidebar";

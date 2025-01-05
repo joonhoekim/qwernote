@@ -1,3 +1,8 @@
+// read layout
+// 카테고리, 포스트 조회를 위해 사용될 레이아웃이다.
+// default layout 하위의 레이아웃이므로, 이미 적용한 공통 코드들은 적용하지 않아도 된다.
+// 조회 기능을 위해 필요한 공통 코드들이 read layout 에 들어간다.
+
 import type { Metadata } from "next";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/edit-sidebar/EditSidebar";
