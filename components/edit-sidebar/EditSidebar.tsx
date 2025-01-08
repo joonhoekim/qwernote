@@ -12,6 +12,7 @@ import {
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import EditTree from "@/components/edit-sidebar/EditTree";
 import { ComboboxDemo } from "@/components/edit-sidebar/EditCombobox";
+import { ProfileButton } from "@/components/sidebar-profile/ProfileMenu";
 
 export function AppSidebar() {
   // menu items.
@@ -50,6 +51,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
+              <ProfileButton />
               <ComboboxDemo />
               <EditTree />
               {items.map((item) => (
