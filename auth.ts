@@ -2,12 +2,18 @@
 // - extracted from route.ts.
 // reference: https://next-auth.js.org/configuration/nextjs
 
+import type {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
 import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import NextAuth, { NextAuthOptions, Account, Profile, User } from "next-auth";
+import NextAuth, { getServerSession } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions: NextAuthOptions = {
+export const config = {
   debug: !!process.env.AUTH_DEBUG,
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -34,6 +40,13 @@ export const authOptions: NextAuthOptions = {
     // error: '/auth/error', // Error code passed in query string as ?error=
     // newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-};
-export const { handler } = NextAuth(authOptions);
-export const { auth, signIn, signOut } = handler;
+} satisfies NextAuthOptions;
+export const { handler } = NextAuth(config);
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, config);
+}
