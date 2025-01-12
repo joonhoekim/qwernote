@@ -41,7 +41,10 @@ export const config = {
     // newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 } satisfies NextAuthOptions;
-export const { handler } = NextAuth(config);
+
+// 아래 handler를 직접 export 했었으나, config를 route.ts 에서 받아서 사용하도록 변경함
+// export const { handler } = NextAuth(config);
+
 export function auth(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
