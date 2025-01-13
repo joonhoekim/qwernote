@@ -50,6 +50,68 @@ export function Editor() {
           />
           {/* 작업 히스토리 기능 지원  */}
           <HistoryPlugin />
+          {/*<DragDropPaste />*/}
+          <AutoFocusPlugin />
+          <SelectionAlwaysOnDisplay />
+          <ClearEditorPlugin />
+          {/*<ComponentPickerPlugin />*/}
+          {/*<EmojiPickerPlugin />*/}
+          {/*<AutoEmbedPlugin />*/}
+          {/*<MentionsPlugin />*/}
+          {/*<EmojisPlugin />*/}
+          {/*<HashtagPlugin />*/}
+          {/*<KeywordsPlugin />*/}
+          {/*<SpeechToTextPlugin />*/}
+          {/*<AutoLinkPlugin />*/}
+          {/*<RichTextPlugin*/}
+          {/*  contentEditable={*/}
+          {/*    <div className="editor-scroller">*/}
+          {/*      <div className="editor" ref={onRef}>*/}
+          {/*        <ContentEditable placeholder={placeholder} />*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  }*/}
+          {/*  ErrorBoundary={LexicalErrorBoundary}*/}
+          {/*/>*/}
+          {/*<MarkdownShortcutPlugin />*/}
+          {/*<CodeHighlightPlugin />*/}
+          {/*<ListPlugin />*/}
+          {/*<CheckListPlugin />*/}
+          {/*<TablePlugin*/}
+          {/*  hasCellMerge={tableCellMerge}*/}
+          {/*  hasCellBackgroundColor={tableCellBackgroundColor}*/}
+          {/*  hasHorizontalScroll={tableHorizontalScroll}*/}
+          {/*/>*/}
+          {/*<TableCellResizer />*/}
+          {/*<ImagesPlugin />*/}
+          {/*<InlineImagePlugin />*/}
+          {/*<LinkPlugin hasLinkAttributes={hasLinkAttributes} />*/}
+          {/*<PollPlugin />*/}
+          {/*<TwitterPlugin />*/}
+          {/*<YouTubePlugin />*/}
+          {/*<FigmaPlugin />*/}
+          {/*<ClickableLinkPlugin disabled={isEditable} />*/}
+          <HorizontalRulePlugin />
+          {/*<EquationsPlugin />*/}
+          {/*<ExcalidrawPlugin />*/}
+          {/*<TabFocusPlugin />*/}
+          <TabIndentationPlugin maxIndent={7} />
+          {/*<CollapsiblePlugin />*/}
+          {/*<PageBreakPlugin />*/}
+          {/*<LayoutPlugin />*/}
+          <PlainTextPlugin
+            contentEditable={<ContentEditable />}
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+          {/*{isAutocomplete && <AutocompletePlugin />}*/}
+          {/*<div>{showTableOfContents && <TableOfContentsPlugin />}</div>*/}
+          {/*{shouldUseLexicalContextMenu && <ContextMenuPlugin />}*/}
+          {/*{shouldAllowHighlightingWithBrackets && <SpecialTextPlugin />}*/}
+          {/*<ActionsPlugin*/}
+          {/*  isRichText={isRichText}*/}
+          {/*  shouldPreserveNewLinesInMarkdown={shouldPreserveNewLinesInMarkdown}*/}
+          {/*/>*/}
+          {/*<TreeViewPlugin />*/}
         </div>
       </LexicalComposer>
     </div>
