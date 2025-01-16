@@ -1,32 +1,22 @@
-/* app/styles/editor.css */
-.editor-shell {
-  height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
 .editor-container {
   position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: auto;
 }
 
-.ContentEditable__root {
-  flex: 1;
+.editor-inner {
   position: relative;
+  height: 100%;
+}
+
+/* Lexical Editor의 contentEditable div에 적용되는 스타일 */
+.editor-input {
+  height: 100%;
   resize: none;
+  position: relative;
   tab-size: 1;
   outline: 0;
-  overflow-y: auto;
-  padding: 1rem;
-}
-
-.editor-placeholder {
-  color: #999;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  pointer-events: none;
+  padding: 15px;
+  overflow: auto;
 }
