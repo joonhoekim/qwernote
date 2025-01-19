@@ -4,7 +4,6 @@ export default function EditLayout({
   return (
     <>
       {/* This layout is for Lexical Editor... */}
-
       {children}
     </>
   );

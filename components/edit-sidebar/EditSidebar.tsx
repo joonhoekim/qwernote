@@ -9,34 +9,14 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-import EditTree from "@/components/edit-sidebar/EditTree";
+import { Settings } from "lucide-react";
+// import EditTree from "@/components/test-components/EditTree";
 import { ComboboxDemo } from "@/components/edit-sidebar/EditCombobox";
-import { ProfileButton } from "@/components/sidebar-profile/ProfileMenu";
+import Tree from "@/components/tree/Tree";
 
 export function AppSidebar() {
   // menu items.
   const items = [
-    {
-      title: "Home",
-      url: "#",
-      icon: Home,
-    },
-    {
-      title: "Inbox",
-      url: "#",
-      icon: Inbox,
-    },
-    {
-      title: "Calendar",
-      url: "#",
-      icon: Calendar,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: Search,
-    },
     {
       title: "Settings",
       url: "#",
@@ -51,9 +31,6 @@ export function AppSidebar() {
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <ProfileButton />
-              <ComboboxDemo />
-              <EditTree />
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
@@ -64,6 +41,9 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <ComboboxDemo />
+              {/*<EditTree />*/}
+              <Tree />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
