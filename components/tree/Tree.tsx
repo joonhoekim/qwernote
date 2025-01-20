@@ -70,8 +70,11 @@ const Node = ({ node, style, dragHandle }) => {
             <ContextMenuItem onSelect={() => console.log('Add child to:', node.data.id)}>
               Add Child
             </ContextMenuItem>
-            <ContextMenuItem onSelect={() => console.log('Edit:', node.data.id)}>
-              Edit
+            <ContextMenuItem onSelect={() => console.log('Rename:', node.data.id)}>
+              Rename
+            </ContextMenuItem>
+            <ContextMenuItem onSelect={() => console.log('Duplicate:', node.data.id)}>
+              Duplicate
             </ContextMenuItem>
             <ContextMenuItem
                 className="text-red-600"
