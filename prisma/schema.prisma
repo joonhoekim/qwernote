@@ -14,9 +14,10 @@ datasource db {
 // User > Category > Post > Comment
 
 model Category {
-  id   String @id @default(cuid())
-  name String
-  slug String // for url routing
+  id        String   @id @default(cuid())
+  name      String
+  slug      String // for url routing
+  published Boolean? @default(true)
 
   // author
   userId String
@@ -39,7 +40,7 @@ model Post {
   slug      String
   content   String
   order     String // later, use fractional-indexing
-  published Boolean? @default(false)
+  published Boolean? @default(true)
 
   // relation
   userId     String
@@ -62,7 +63,7 @@ model Comment {
 
   isDeleted Boolean @default(false)
 
-  //relation
+  // relation
   replies Comment[] @relation("CommentToComment") // 하위 댓글들
   parent  Comment?  @relation("CommentToComment", fields: [parentId], references: [id], onDelete: Restrict)
   userId  String
@@ -113,7 +114,7 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  //time
+  // time
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
