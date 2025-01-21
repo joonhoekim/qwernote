@@ -10,7 +10,7 @@
     "db:generate": "npm exec prisma generate",
     "db:push": "npm exec prisma db push",
     "db:studio": "npm exec prisma studio",
-    "db:seed": "npm exec prisma db seed",
+    "db:seed": "ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"} prisma/seed.ts",
     "db:sync": "npm exec prisma generate && npm exec prisma db push",
     "db:reset": "npm exec prisma db push --force-reset && npm exec prisma db seed",
     "db:migrate": "npm exec prisma migrate dev",
@@ -95,7 +95,7 @@
     "@eslint/eslintrc": "^3",
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@types/aos": "^3.0.7",
-    "@types/node": "^20",
+    "@types/node": "^20.17.14",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
@@ -106,6 +106,7 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "prisma": "^6.2.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   }
 }

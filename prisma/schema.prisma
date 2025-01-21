@@ -14,12 +14,16 @@ datasource db {
 // User > Category > Post > Comment
 
 model Category {
-  id     String @id @default(cuid())
-  name   String
-  slug   String // for url routing
+  id   String @id @default(cuid())
+  name String
+  slug String // for url routing
+
+  // author
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  posts  Post[]
+
+  // posts
+  posts Post[]
 
   // time
   createdAt DateTime @default(now())
@@ -34,6 +38,7 @@ model Post {
   title     String
   slug      String
   content   String
+  order     String // later, use fractional-indexing
   published Boolean? @default(false)
 
   // relation
