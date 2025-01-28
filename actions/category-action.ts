@@ -1,4 +1,5 @@
 // add authorization process later...
+import "server-only";
 
 import { prisma } from "@/lib/prisma";
 
