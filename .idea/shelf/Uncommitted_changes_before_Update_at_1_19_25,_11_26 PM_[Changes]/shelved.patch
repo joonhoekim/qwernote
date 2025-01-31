@@ -1,0 +1,16 @@
+Index: components/editor/Editor.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// components/editor/Editor.tsx\n\"use client\";\n\nimport { $getRoot, $getSelection } from \"lexical\";\nimport { useEffect } from \"react\";\n\nimport { AutoFocusPlugin } from \"@lexical/react/LexicalAutoFocusPlugin\";\nimport { LexicalComposer } from \"@lexical/react/LexicalComposer\";\nimport { RichTextPlugin } from \"@lexical/react/LexicalRichTextPlugin\";\nimport { ContentEditable } from \"@lexical/react/LexicalContentEditable\";\nimport { HistoryPlugin } from \"@lexical/react/LexicalHistoryPlugin\";\nimport { LexicalErrorBoundary } from \"@lexical/react/LexicalErrorBoundary\";\n\nconst theme = {\n  // Theme styling goes here\n  //...\n};\n\nfunction onError(error) {\n  console.error(error);\n}\n\nexport function Editor() {\n  const initialConfig = {\n    namespace: \"qwernote\",\n    theme,\n    onError,\n  };\n\n  return (\n    <div className=\"relative flex flex-col h-full w-full\">\n      {\" \"}\n      {/* flex container */}\n      <LexicalComposer initialConfig={initialConfig}>\n        <div className=\"flex-1 min-h-0\">\n          {\" \"}\n          {/* flex-1과 min-h-0으로 컨테이너 크기에 맞춤 */}\n          <RichTextPlugin\n            contentEditable={\n              <ContentEditable className=\"h-full w-full p-4 outline-none focus:outline-none overflow-auto\" />\n            }\n            placeholder={\n              <div className=\"absolute top-4 left-4 text-muted-foreground select-none pointer-events-none\">\n                Enter some text...\n              </div>\n            }\n            ErrorBoundary={LexicalErrorBoundary}\n          />\n          <HistoryPlugin />\n          <AutoFocusPlugin />\n        </div>\n      </LexicalComposer>\n    </div>\n  );\n}\n
+===================================================================
+diff --git a/components/editor/Editor.tsx b/components/editor/Editor.tsx
+--- a/components/editor/Editor.tsx	(revision 7e5e5bbc4664ae5e0371dbe975dcf3308e3bfd60)
++++ b/components/editor/Editor.tsx	(date 1736339662946)
+@@ -14,6 +14,7 @@
+ const theme = {
+   // Theme styling goes here
+   //...
++  editable: true,
+ };
+ 
+ function onError(error) {

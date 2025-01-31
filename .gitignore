@@ -53,5 +53,5 @@ next-env.d.ts
 
 dev.db
 
-# jetbrains
-.idea/**
+# jetbrains / let's commit idea settings
+#.idea/**
