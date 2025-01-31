@@ -7,11 +7,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { LogOut, Settings, Layout } from "lucide-react";
+import { LogOut, Settings, Layout, HelpCircle } from "lucide-react";
 
 export function ProfileButton() {
   const { data: session, status } = useSession();
@@ -59,10 +59,16 @@ export function ProfileButton() {
           Settings
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => router.push(`/@${handle}/settings/categories`)}
+          onClick={() => router.push(`/@${handle}/categories`)}
         >
           <Layout className="mr-2 h-4 w-4" />
           Categories
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => router.push(`/help`)}
+        >
+          <HelpCircle className="mr-2 h-4 w-4" />
+          Help
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => signOut({ redirect: false })}>
           <LogOut className="mr-2 h-4 w-4" />
