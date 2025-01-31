@@ -34,13 +34,20 @@ model Category {
 }
 
 model Post {
-  id        String   @id @default(cuid())
-  parentId  String
-  title     String
-  slug      String
-  content   String
-  order     String // later, use fractional-indexing
+  id       String  @id @default(cuid())
+  parentId String?
+  title    String
+  slug     String
+  content  String
+  order    String // later, use fractional-indexing
+  level    Int     @default(0)
+  path     String // full path
+
   published Boolean? @default(true)
+
+  // 자식 포스트들과의 관계
+  parent   Post?  @relation("PostToPost", fields: [parentId], references: [id])
+  children Post[] @relation("PostToPost")
 
   // relation
   userId     String
@@ -54,6 +61,8 @@ model Post {
   updatedAt DateTime @updatedAt
 
   @@unique([userId, categoryId, slug])
+  @@index([parentId])
+  @@index([path])
 }
 
 model Comment {

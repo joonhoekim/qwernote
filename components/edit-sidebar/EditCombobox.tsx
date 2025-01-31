@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CategorySection } from "@/components/category/CategorySection";
+import { CategorySection } from "@/components/edit-sidebar/category/CategorySection";
 
 
 export function ComboboxDemo() {

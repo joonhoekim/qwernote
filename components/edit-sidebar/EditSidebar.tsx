@@ -11,21 +11,31 @@ import {
 
 // import EditTree from "@/components/test-components/EditTree";
 import { ComboboxDemo } from "@/components/edit-sidebar/EditCombobox";
-import Tree from "@/components/tree/Tree";
 import { ProfileButton } from "@/components/sidebar-profile/ProfileMenu";
+import { PostTree } from "@/components/edit-sidebar/post/PostTree";
+import { CategoryTree } from "@/components/edit-sidebar/category/CategoryTree";
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
+        <h1>qwernote LOGO</h1>
+        <ProfileButton />
         <SidebarGroup>
-          <SidebarGroupLabel>qwernote</SidebarGroupLabel>
-          <ProfileButton />
+          <SidebarGroupLabel>Categories</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <ComboboxDemo />
               {/*<EditTree />*/}
-              <Tree />
+              {/*<CategoryTree />*/}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Posts</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <PostTree />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
