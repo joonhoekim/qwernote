@@ -5,59 +5,59 @@
  * 2. 필요한 경우, PrismaClient의 설정(로깅 등)을 여기서 할 수 있음.
  *
  */
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
 
 const prismaClientSingleton = () => {
-  if (process.env.NODE_ENV === 'development') {
-    const prisma = new PrismaClient({
-      log: [
-        {
-          emit: 'event',
-          level: 'query',
-        },
-        {
-          emit: 'stdout',
-          level: 'error',
-        },
-        {
-          emit: 'stdout',
-          level: 'info',
-        },
-        {
-          emit: 'stdout',
-          level: 'warn',
-        },
-      ],
-    });
+    if (process.env.NODE_ENV === 'development') {
+        const prisma = new PrismaClient({
+            log: [
+                {
+                    emit: 'event',
+                    level: 'query',
+                },
+                {
+                    emit: 'stdout',
+                    level: 'error',
+                },
+                {
+                    emit: 'stdout',
+                    level: 'info',
+                },
+                {
+                    emit: 'stdout',
+                    level: 'warn',
+                },
+            ],
+        });
 
-    // event listenr only for serverside
-    if (
-      process.env.NODE_ENV === 'development' &&
-      typeof window === 'undefined'
-    ) {
-      prisma.$on('query', (e) => {
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log(`Query: ${e.query}`);
-        console.log(`Params: ${e.params}`);
-        console.log(`Duration: ${e.duration}ms`);
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      });
+        // event listenr only for serverside
+        if (
+            process.env.NODE_ENV === 'development' &&
+            typeof window === 'undefined'
+        ) {
+            prisma.$on('query', (e) => {
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log(`Query: ${e.query}`);
+                console.log(`Params: ${e.params}`);
+                console.log(`Duration: ${e.duration}ms`);
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            });
+        }
+
+        return prisma;
+    } else {
+        const prisma = new PrismaClient();
+        return prisma;
     }
-
-    return prisma;
-  } else {
-    const prisma = new PrismaClient();
-    return prisma;
-  }
 };
 
 // 함수의 반환 타입을 자동으로 추론
 declare const globalThis: {
-  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+    prismaGlobal: ReturnType<typeof prismaClientSingleton>;
 } & typeof global;
 
 const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma;
 
-export { prisma };
+export {prisma};

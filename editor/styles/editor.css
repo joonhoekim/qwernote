@@ -1,22 +1,22 @@
 .editor-container {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  overflow: auto;
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    overflow: auto;
 }
 
 .editor-inner {
-  position: relative;
-  height: 100%;
+    position: relative;
+    height: 100%;
 }
 
 /* Lexical Editor의 contentEditable div에 적용되는 스타일 */
 .editor-input {
-  height: 100%;
-  resize: none;
-  position: relative;
-  tab-size: 1;
-  outline: 0;
-  padding: 15px;
-  overflow: auto;
+    height: 100%;
+    resize: none;
+    position: relative;
+    tab-size: 1;
+    outline: 0;
+    padding: 15px;
+    overflow: auto;
 }

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Tree } from "react-arborist";
-import { editTempData } from "@/components/test-components/test-data/edit-temp-data";
+import {editTempData} from '@/components/test-components/test-data/edit-temp-data';
+import {Tree} from 'react-arborist';
 
 export default function EditTree() {
-  return <Tree initialData={editTempData} />;
+    return <Tree initialData={editTempData} />;
 }

@@ -1,32 +1,26 @@
-"use client";
+'use client';
 
 // react hooks
-import { useEffect } from "react";
-
-// next-auth
-import { SessionProvider } from "next-auth/react";
-
 // AOS
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+// next-auth
+import {SessionProvider} from 'next-auth/react';
+import {useEffect} from 'react';
 
-export function ClientProviders({ children }: { children: React.ReactNode }) {
-  console.log("ClientProviders rendering");
+export function ClientProviders({children}: {children: React.ReactNode}) {
+    //for AOS lib(animate on scroll library)
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: false,
+            delay: 0,
+            offset: 100,
+            throttleDelay: 50,
+            debounceDelay: 0,
+        });
+    }, []);
 
-  //for AOS lib(animate on scroll library)
-  useEffect(() => {
-    console.log("AOS init start");
-    AOS.init({
-      duration: 1000,
-      once: false,
-      mirror: false,
-      delay: 0,
-      offset: 100,
-      throttleDelay: 50,
-      debounceDelay: 0,
-    });
-    console.log("AOS init end");
-  }, []);
-
-  return <SessionProvider>{children}</SessionProvider>;
+    return <SessionProvider>{children}</SessionProvider>;
 }

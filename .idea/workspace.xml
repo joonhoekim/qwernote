@@ -4,9 +4,124 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81702897-617b-4ce2-a1f6-fbb516198b89" name="Changes" comment="seeding with faker">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="81702897-617b-4ce2-a1f6-fbb516198b89" name="Changes" comment="reformat">
+      <change afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/authentication.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/category-actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/HomeSidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ReadSidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/next-auth.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actions/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actions/post-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/actions/post-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(edit)/[handle]/edit/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(edit)/[handle]/edit/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(edit)/[handle]/edit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(edit)/[handle]/edit/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(edit)/[handle]/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(edit)/[handle]/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(edit)/[handle]/test/TestTree.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(edit)/[handle]/test/TestTree.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(edit)/[handle]/test/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(edit)/[handle]/test/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(home)/[handle]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/[handle]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(home)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(read)/[handle]/[categorySlug]/[postSlug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(read)/[handle]/[categorySlug]/[postSlug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(read)/[handle]/[categorySlug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(read)/[handle]/[categorySlug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(read)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(read)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/auth/[...nextauth]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/global-error.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/global-error.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components.json" beforeDir="false" afterPath="$PROJECT_DIR$/components.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/EditCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/EditCombobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/EditSidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/EditSidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/category/AddCategoryButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/category/AddCategoryButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/category/CategorySection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/category/CategorySection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/category/CategorySelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/category/CategorySelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/category/CategoryTree.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/category/CategoryTree.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/edit-sidebar/post/PostTree.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/edit-sidebar/post/PostTree.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/home-sidebar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/read-sidebar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sidebar-profile/ProfileMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar-profile/ProfileMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/test-components/EditTree.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/test-components/EditTree.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/test-components/test-data/edit-temp-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/test-components/test-data/edit-temp-data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/tree/Tree.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/Tree.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/accordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/accordion.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/alert-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/alert-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/alert.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/alert.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/aspect-ratio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/aspect-ratio.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/badge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/breadcrumb.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/breadcrumb.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/carousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/carousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/chart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/chart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/checkbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/checkbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/collapsible.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/collapsible.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/command.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/context-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/context-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/drawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/drawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/hover-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/hover-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input-otp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input-otp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/label.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/menubar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/menubar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/navigation-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/navigation-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/pagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/popover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/popover.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/progress.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/progress.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/radio-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/radio-group.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/resizable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/resizable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/scroll-area.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/scroll-area.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/separator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/separator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sheet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/skeleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/skeleton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/slider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sonner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sonner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/switch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/toast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/toast.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/toaster.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/toaster.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/toggle-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/toggle-group.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/toggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/Editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/editor/Editor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorPractice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorPractice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/SimpleEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/editor/SimpleEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/styles/editor.css" beforeDir="false" afterPath="$PROJECT_DIR$/editor/styles/editor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/use-mobile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-toast.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/use-toast.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/minio/fileUpload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/minio/fileUpload.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/prisma.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/slugify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/slugify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/string-util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/string-util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/validation/category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validation/category.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/validation/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validation/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/validation/schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validation/schemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/validation/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validation/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nextjs-blog-submodule" beforeDir="false" afterPath="$PROJECT_DIR$/nextjs-blog-submodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nextjs-blog-submodule/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/nextjs-blog-submodule/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/seed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/seed.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/providers/ClientProviders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/providers/ClientProviders.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,18 +138,18 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "joonhoekim"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;joonhoekim&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/joonhoekim/qwernote",
-    "accountId": "48f87974-8e74-43eb-a6b8-de7eb6d49a82"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/joonhoekim/qwernote&quot;,
+    &quot;accountId&quot;: &quot;48f87974-8e74-43eb-a6b8-de7eb6d49a82&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -65,11 +180,13 @@
     "npm.db:studio.executor": "Run",
     "npm.dev and studio.executor": "Run",
     "npm.generate and push.executor": "Run",
+    "npm.npx prisma studio.executor": "Run",
+    "npm.run dev.executor": "Run",
     "npm.seed.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/joonhoekim/WebstormProjects/qwernote/node_modules/prettier",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\d16\\WebstormProjects\\qwernote\\node_modules\\prettier",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "/Users/joonhoekim/WebstormProjects/qwernote/node_modules/typescript/lib",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "C:\\Users\\d16\\WebstormProjects\\qwernote\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -94,20 +211,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="npm.dev and studio">
-    <configuration name="dev and studio" type="js.build_tools.npm" singleton="false">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <EXTENSION ID="com.intellij.lang.javascript.buildTools.npm.rc.StartBrowserRunConfigurationExtension">
-        <browser start="true" url="http://localhost:3000/@admin/edit" />
-      </EXTENSION>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="npm.run dev">
     <configuration name="generate and push" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -128,7 +232,17 @@
         </option>
       </method>
     </configuration>
-    <configuration name="seed" type="js.build_tools.npm">
+    <configuration name="npx prisma studio" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="db:studio" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="prisma db seed" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -138,11 +252,30 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="run dev" type="js.build_tools.npm" singleton="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <EXTENSION ID="com.intellij.lang.javascript.buildTools.npm.rc.StartBrowserRunConfigurationExtension">
+        <browser start="true" url="http://localhost:3000/@admin/edit" />
+      </EXTENSION>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.run dev" />
+      <item itemvalue="npm.generate and push" />
+      <item itemvalue="npm.npx prisma studio" />
+      <item itemvalue="npm.prisma db seed" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
       </set>
     </attachedChunks>
   </component>
@@ -159,6 +292,7 @@
       <workItem from="1737296685103" duration="12255000" />
       <workItem from="1738335887692" duration="1629000" />
       <workItem from="1738337540169" duration="117000" />
+      <workItem from="1738403189609" duration="12092000" />
     </task>
     <task id="LOCAL-00001" summary="add group routing&#10;develop sidebar">
       <option name="closed" value="true" />
@@ -224,17 +358,8 @@
     <MESSAGE value="favicon, metadata" />
     <MESSAGE value="Treeview under developing..." />
     <MESSAGE value="seeding with faker" />
-    <option name="LAST_COMMIT_MESSAGE" value="seeding with faker" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/components/edit-sidebar/EditSidebar.tsx</url>
-          <line>38</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="go on.." />
+    <MESSAGE value="reformat" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat" />
   </component>
 </project>
