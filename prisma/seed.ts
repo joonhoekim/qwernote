@@ -1,7 +1,7 @@
 // File: prisma/seed.ts
+import {slugify} from '@/lib/utils/slugify';
 import {faker} from '@faker-js/faker';
 import {PrismaClient} from '@prisma/client';
-import slugify from 'slugify';
 
 // Configuration for seed data volume
 const SEED_COUNT = {
@@ -15,10 +15,7 @@ const SEED_COUNT = {
 
 // Utility functions
 const createSlug = (text: string): string => {
-    return slugify(text, {
-        lower: true,
-        strict: true,
-    });
+    return slugify(text);
 };
 
 const randomDate = (start: Date, end: Date): Date => {
