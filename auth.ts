@@ -8,11 +8,11 @@ import type {
     NextApiRequest,
     NextApiResponse,
 } from 'next';
-import {getServerSession, Session} from 'next-auth';
+import {Session, getServerSession} from 'next-auth';
 import type {NextAuthOptions} from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
 import {DefaultSession, User} from 'next-auth';
 import {JWT} from 'next-auth/jwt';
+import GoogleProvider from 'next-auth/providers/google';
 
 declare module 'next-auth' {
     interface Session {

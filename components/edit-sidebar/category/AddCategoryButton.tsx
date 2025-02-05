@@ -1,13 +1,8 @@
 // app/components/add-category-button.tsx
 'use client';
 
-import {Button} from '@/components/ui/button';
-import {removeAtSymbol} from '@/lib/utils/string-util';
-import {Loader2} from 'lucide-react';
-import {useSession} from 'next-auth/react';
-import {useParams} from 'next/navigation';
 import {createCategory} from '@/actions/category-actions';
-import {useState} from 'react';
+import {Button} from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
@@ -16,7 +11,14 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import {Input} from '@/components/ui/input';
+import {removeAtSymbol} from '@/lib/utils/string-util';
+import {Loader2} from 'lucide-react';
+import {useSession} from 'next-auth/react';
+import {useParams} from 'next/navigation';
+import {useState} from 'react';
 import {mutate} from 'swr';
+
+// app/components/add-category-button.tsx
 
 export function AddCategoryButton() {
     const {data: session, status} = useSession();

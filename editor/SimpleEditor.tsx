@@ -11,6 +11,8 @@ import './styles/editor.css';
 
 // app/components/Editor.tsx
 
+// app/components/Editor.tsx
+
 const initialConfig = {
     namespace: 'MyEditor',
     onError: (error: Error) => {

@@ -1,8 +1,8 @@
 // import EditTree from "@/components/test-components/EditTree";
-import { ComboboxDemo } from '@/components/edit-sidebar/EditCombobox';
-import { CategoryTree } from '@/components/edit-sidebar/category/CategoryTree';
-import { PostTree } from '@/components/edit-sidebar/post/PostTree';
-import { ProfileButton } from '@/components/sidebar-profile/ProfileMenu';
+import {ComboboxDemo} from '@/components/edit-sidebar/EditCombobox';
+import {CategoryTree} from '@/components/edit-sidebar/category/CategoryTree';
+import {PostTree} from '@/components/edit-sidebar/post/PostTree';
+import {ProfileButton} from '@/components/sidebar-profile/ProfileMenu';
 import {
     Sidebar,
     SidebarContent,
@@ -13,7 +13,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { ModeToggle } from '../theme/ModeToggle';
+
+import {ModeToggle} from '../theme/ModeToggle';
 
 export function AppSidebar() {
     return (

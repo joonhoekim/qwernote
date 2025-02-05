@@ -15,6 +15,8 @@ import {useRouter} from 'next/navigation';
 
 // @/components/sidebar-profile/ProfileButton.tsx
 
+// @/components/sidebar-profile/ProfileButton.tsx
+
 export function ProfileButton() {
     const {data: session, status} = useSession();
     const router = useRouter();

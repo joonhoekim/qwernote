@@ -5,11 +5,12 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 // next-auth
-import { SessionProvider } from 'next-auth/react';
-import { useEffect } from 'react';
-import { ThemeProvider } from './ThemeProvider';
+import {SessionProvider} from 'next-auth/react';
+import {useEffect} from 'react';
 
-export function ClientProviders({ children }: { children: React.ReactNode }) {
+import {ThemeProvider} from './ThemeProvider';
+
+export function ClientProviders({children}: {children: React.ReactNode}) {
     //for AOS lib(animate on scroll library)
     useEffect(() => {
         AOS.init({
@@ -28,8 +29,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
             attribute="class"
             defaultTheme="system"
             enableSystem
-            disableTransitionOnChange
-        >
+            disableTransitionOnChange>
             <SessionProvider>{children}</SessionProvider>)
         </ThemeProvider>
     );

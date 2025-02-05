@@ -1,10 +1,10 @@
 'use server';
 
 // TODO: add auth process
-import {prisma} from '@/lib/prisma';
-import {Category} from '@prisma/client';
-import {slugify} from '@/lib/utils/slugify';
 import {auth} from '@/auth';
+import {prisma} from '@/lib/prisma';
+import {slugify} from '@/lib/utils/slugify';
+import {Category} from '@prisma/client';
 import {revalidatePath} from 'next/cache';
 
 // 인가과정 없이, 해당 유저 페이지에서 조회 가능한 카테고리 목록(By Id)
