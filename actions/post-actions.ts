@@ -2,40 +2,42 @@
 
 import {auth} from '@/auth';
 import {prisma} from '@/lib/prisma';
+import {generateOrder} from '@/lib/utils/fractional-indexing';
 import {slugify} from '@/lib/utils/slugify';
 import {revalidatePath} from 'next/cache';
 import {z} from 'zod';
 
 // 트리 데이터를 가져오는 액션
-export async function fetchPostTree() {
+export async function fetchPostTree(categoryId: string) {
     const session = await auth();
     if (!session?.user?.id) throw new Error('Unauthorized');
 
-    // 사용자의 모든 포스트를 가져와서 트리 구조로 변환
     const posts = await prisma.post.findMany({
-        where: {userId: session.user.id},
+        where: {
+            userId: session.user.id,
+            categoryId,
+        },
         orderBy: {order: 'asc'},
         select: {
             id: true,
-            parentId: true,
             title: true,
+            parentId: true,
             order: true,
-            slug: true,
         },
     });
 
-    // 플랫 구조를 트리 구조로 변환하는 함수
-    function buildTree(items: any[], parentId: string | null = null): any[] {
-        return items
-            .filter((item) => item.parentId === parentId)
-            .sort((a, b) => a.order.localeCompare(b.order))
-            .map((item) => ({
-                ...item,
-                children: buildTree(items, item.id),
-            }));
-    }
-
     return buildTree(posts);
+}
+
+function buildTree(items: any[], parentId: string | null = null): any[] {
+    return items
+        .filter((item) => item.parentId === parentId)
+        .sort((a, b) => a.order.localeCompare(b.order))
+        .map((item) => ({
+            id: item.id,
+            name: item.title,
+            children: buildTree(items, item.id),
+        }));
 }
 
 // 새 포스트를 생성하는 액션
@@ -43,29 +45,35 @@ export async function createPost(formData: FormData) {
     const session = await auth();
     if (!session?.user?.id) throw new Error('Unauthorized');
 
-    const schema = z.object({
-        parentId: z.string().optional(),
-        title: z.string().min(1),
-        order: z.string(),
+    const parentId = formData.get('parentId') as string | null;
+    const title = formData.get('title') as string;
+    const categoryId = formData.get('categoryId') as string;
+    const isFolder = formData.get('isFolder') === 'true';
+
+    const siblings = await prisma.post.findMany({
+        where: {parentId},
+        select: {order: true},
+        orderBy: {order: 'desc'},
+        take: 1,
     });
 
-    const data = schema.parse({
-        parentId: formData.get('parentId'),
-        title: formData.get('title'),
-        order: formData.get('order'),
-    });
+    const lastOrder = siblings[0]?.order;
+    const newOrder = generateOrder(lastOrder);
 
     const post = await prisma.post.create({
         data: {
-            ...data,
+            title,
+            parentId,
+            categoryId,
+            order: newOrder,
             userId: session.user.id,
-            slug: slugify(data.title),
-            content: '', // Lexical 에디터의 초기 상태
-            categoryId: '', // 카테고리 ID 설정 필요
+            content: '',
+            isFolder,
+            slug: title.toLowerCase().replace(/\s+/g, '-'),
         },
     });
 
-    revalidatePath('/posts'); // 경로에 맞게 수정
+    revalidatePath('/posts');
     return post;
 }
 
@@ -74,33 +82,30 @@ export async function movePost(formData: FormData) {
     const session = await auth();
     if (!session?.user?.id) throw new Error('Unauthorized');
 
-    const schema = z.object({
-        id: z.string(),
-        parentId: z.string().nullable(),
-        order: z.string(),
+    const id = formData.get('id') as string;
+    const parentId = formData.get('parentId') as string | null;
+    const prevId = formData.get('prevId') as string | null;
+    const nextId = formData.get('nextId') as string | null;
+
+    const siblings = await prisma.post.findMany({
+        where: {parentId},
+        select: {order: true},
+        orderBy: {order: 'asc'},
     });
 
-    const data = schema.parse({
-        id: formData.get('id'),
-        parentId: formData.get('parentId'),
-        order: formData.get('order'),
-    });
-
-    // 포스트 소유권 확인
-    const post = await prisma.post.findUnique({
-        where: {id: data.id},
-        select: {userId: true},
-    });
-
-    if (post?.userId !== session.user.id) {
-        throw new Error('Unauthorized');
-    }
+    const prevOrder = prevId
+        ? siblings.find((s) => s.id === prevId)?.order
+        : null;
+    const nextOrder = nextId
+        ? siblings.find((s) => s.id === nextId)?.order
+        : null;
+    const newOrder = generateOrder(prevOrder, nextOrder);
 
     await prisma.post.update({
-        where: {id: data.id},
+        where: {id},
         data: {
-            parentId: data.parentId,
-            order: data.order,
+            parentId,
+            order: newOrder,
         },
     });
 

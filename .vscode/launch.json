@@ -11,7 +11,7 @@
             "type": "node-terminal"
         },
         {
-            "command": "npm run db:generate && npm run db:push",
+            "command": "npm run db:sync",
             "name": "(1) prisma generate & db push",
             "request": "launch",
             "type": "node-terminal"
@@ -40,6 +40,6 @@
             "request": "attach",
             "type": "msedge",
             "webRoot": "${workspaceFolder}"
-        }
+        },
     ]
 }

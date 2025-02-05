@@ -86,3 +86,79 @@ export async function createCategory(categoryName: string) {
         console.log('Current session:', session);
     }
 }
+
+export async function deleteCategory(categoryId: string) {
+    const session = await auth();
+
+    if (!session?.user) {
+        throw new Error('Unauthorized');
+    }
+
+    try {
+        // 카테고리 소유권 확인
+        const category = await prisma.category.findUnique({
+            where: {id: categoryId},
+            select: {userId: true},
+        });
+
+        if (category?.userId !== session.user.id) {
+            throw new Error('Unauthorized');
+        }
+
+        await prisma.category.delete({
+            where: {id: categoryId},
+        });
+
+        revalidatePath(`/@${session.user.handle}/*`);
+        return {success: true};
+    } catch (error) {
+        console.error('Failed to delete category', error);
+        return {
+            success: false,
+            error:
+                error instanceof Error
+                    ? error.message
+                    : 'Failed to delete category',
+        };
+    }
+}
+
+export async function updateCategoryName(categoryId: string, newName: string) {
+    const session = await auth();
+
+    if (!session?.user) {
+        throw new Error('Unauthorized');
+    }
+
+    try {
+        // 카테고리 소유권 확인
+        const category = await prisma.category.findUnique({
+            where: {id: categoryId},
+            select: {userId: true},
+        });
+
+        if (category?.userId !== session.user.id) {
+            throw new Error('Unauthorized');
+        }
+
+        const updatedCategory = await prisma.category.update({
+            where: {id: categoryId},
+            data: {
+                name: newName,
+                slug: slugify(newName),
+            },
+        });
+
+        revalidatePath(`/@${session.user.handle}/*`);
+        return {success: true, data: updatedCategory};
+    } catch (error) {
+        console.error('Failed to update category', error);
+        return {
+            success: false,
+            error:
+                error instanceof Error
+                    ? error.message
+                    : 'Failed to update category',
+        };
+    }
+}

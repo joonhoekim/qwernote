@@ -1,7 +1,7 @@
 'use client';
 
-import {getCategoriesByHandle} from '@/actions/category-actions';
-import {Button} from '@/components/ui/button';
+import { getCategoriesByHandle } from '@/actions/category-actions';
+import { Button } from '@/components/ui/button';
 import {
     Command,
     CommandEmpty,
@@ -10,20 +10,37 @@ import {
     CommandItem,
     CommandList,
 } from '@/components/ui/command';
-import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
-import {cn} from '@/lib/utils';
-import {removeAtSymbol} from '@/lib/utils/string-util';
-import {Check, ChevronsUpDown} from 'lucide-react';
-import {useParams} from 'next/navigation';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
+import { removeAtSymbol } from '@/lib/utils/string-util';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import { useParams } from 'next/navigation';
 import * as React from 'react';
 import useSWR from 'swr';
+import {
+    ContextMenu,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuTrigger,
+} from "@/components/ui/context-menu";
+import { Category } from "@prisma/client";
+import { useState } from "react";
+import { deleteCategory, updateCategoryName } from "@/actions/category-actions";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 export function CategorySelector() {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState('');
-    const params = useParams<{handle: string}>();
+    const params = useParams<{ handle: string }>();
     const handle = removeAtSymbol(params.handle);
-    // SWR의 key를 상수로 정의하여 재사용
     const cacheKey = `categories-${handle}`;
 
     // SWR fetcher 함수
@@ -33,12 +50,59 @@ export function CategorySelector() {
         return res;
     };
 
-    // SWR을 사용한 데이터 fetching
+    // mutate를 포함하여 SWR 훅 사용
     const {
         data: categories = [],
         error,
         isLoading,
+        mutate,
     } = useSWR(cacheKey, () => fetcher(handle));
+
+    const [isRenameDialogOpen, setIsRenameDialogOpen] = useState(false);
+    const [categoryToRename, setCategoryToRename] = useState<Category | null>(null);
+    const [newCategoryName, setNewCategoryName] = useState("");
+
+    const handleRename = async (category: Category) => {
+        setCategoryToRename(category);
+        setNewCategoryName(category.name);
+        setIsRenameDialogOpen(true);
+    };
+
+    const handleRenameSubmit = async () => {
+        if (!categoryToRename) return;
+
+        const result = await updateCategoryName(categoryToRename.id, newCategoryName);
+        if (result.success) {
+            toast.success("카테고리 이름이 변경되었습니다.");
+            setIsRenameDialogOpen(false);
+            // 데이터 갱신
+            await mutate();
+            // 선택된 카테고리가 변경된 카테고리인 경우 value 업데이트
+            if (value === categoryToRename.name) {
+                setValue(newCategoryName);
+            }
+        } else {
+            toast.error(result.error || "카테고리 이름 변경에 실패했습니다.");
+        }
+    };
+
+    const handleDelete = async (categoryId: string) => {
+        if (!confirm("정말로 이 카테고리를 삭제하시겠습니까?")) return;
+
+        const result = await deleteCategory(categoryId);
+        if (result.success) {
+            toast.success("카테고리가 삭제되었습니다.");
+            // 데이터 갱신
+            await mutate();
+            // 선택된 카테고리가 삭제된 경우 선택 초기화
+            const deletedCategory = categories.find(cat => cat.id === categoryId);
+            if (value === deletedCategory?.name) {
+                setValue('');
+            }
+        } else {
+            toast.error(result.error || "카테고리 삭제에 실패했습니다.");
+        }
+    };
 
     // 로딩 중이 아니고 에러도 아닌데 데이터가 없는 경우
     if (!isLoading && !error && categories.length === 0) {
@@ -55,58 +119,98 @@ export function CategorySelector() {
 
     // 기존 Popover 컴포넌트 렌더링
     return (
-        <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-                <Button
-                    variant="outline"
-                    role="combobox"
-                    aria-expanded={open}
-                    className="w-[200px] justify-between"
-                    disabled={isLoading}>
-                    {isLoading
-                        ? 'Loading...'
-                        : value
-                          ? categories.find((cat) => cat.name === value)?.name
-                          : 'Select category...'}
-                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
-                <Command>
-                    <CommandInput
-                        placeholder="Search category..."
-                        className="h-9"
-                    />
-                    <CommandList>
-                        <CommandEmpty>No category found.</CommandEmpty>
-                        <CommandGroup>
-                            {categories.map((category) => (
-                                <CommandItem
-                                    key={category.id}
-                                    value={category.name}
-                                    onSelect={(currentValue) => {
-                                        setValue(
-                                            currentValue === value
-                                                ? ''
-                                                : currentValue,
-                                        );
-                                        setOpen(false);
-                                    }}>
-                                    {category.name}
-                                    <Check
-                                        className={cn(
-                                            'ml-auto h-4 w-4',
-                                            value === category.name
-                                                ? 'opacity-100'
-                                                : 'opacity-0',
-                                        )}
-                                    />
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
-                    </CommandList>
-                </Command>
-            </PopoverContent>
-        </Popover>
+        <>
+            <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                    <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className="w-[200px] justify-between"
+                        disabled={isLoading}>
+                        {isLoading
+                            ? 'Loading...'
+                            : value
+                                ? categories.find((cat) => cat.name === value)?.name
+                                : 'Select category...'}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[200px] p-0">
+                    <Command>
+                        <CommandInput
+                            placeholder="Search category..."
+                            className="h-9"
+                        />
+                        <CommandList>
+                            <CommandEmpty>No category found.</CommandEmpty>
+                            <CommandGroup>
+                                {categories.map((category) => (
+                                    <ContextMenu key={category.id}>
+                                        <ContextMenuTrigger>
+                                            <CommandItem
+                                                value={category.name}
+                                                onSelect={(currentValue) => {
+                                                    setValue(
+                                                        currentValue === value
+                                                            ? ''
+                                                            : currentValue,
+                                                    );
+                                                    setOpen(false);
+                                                }}>
+                                                {category.name}
+                                                <Check
+                                                    className={cn(
+                                                        'ml-auto h-4 w-4',
+                                                        value === category.name
+                                                            ? 'opacity-100'
+                                                            : 'opacity-0',
+                                                    )}
+                                                />
+                                            </CommandItem>
+                                        </ContextMenuTrigger>
+                                        <ContextMenuContent>
+                                            <ContextMenuItem onClick={() => handleRename(category)}>
+                                                이름 변경
+                                            </ContextMenuItem>
+                                            <ContextMenuItem
+                                                className="text-destructive"
+                                                onClick={() => handleDelete(category.id)}
+                                            >
+                                                삭제
+                                            </ContextMenuItem>
+                                        </ContextMenuContent>
+                                    </ContextMenu>
+                                ))}
+                            </CommandGroup>
+                        </CommandList>
+                    </Command>
+                </PopoverContent>
+            </Popover>
+
+            <Dialog open={isRenameDialogOpen} onOpenChange={setIsRenameDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>카테고리 이름 변경</DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4">
+                        <Input
+                            value={newCategoryName}
+                            onChange={(e) => setNewCategoryName(e.target.value)}
+                            placeholder="새로운 카테고리 이름"
+                        />
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            variant="outline"
+                            onClick={() => setIsRenameDialogOpen(false)}
+                        >
+                            취소
+                        </Button>
+                        <Button onClick={handleRenameSubmit}>변경</Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+        </>
     );
 }
