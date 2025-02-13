@@ -238,3 +238,67 @@ export async function deletePost(formData: FormData) {
     await prisma.post.delete({where: {id}});
     revalidatePath('/posts');
 }
+
+// 포스트 내용을 가져오는 액션
+export async function fetchPost(id: string) {
+    const session = await auth();
+    if (!session?.user?.id) throw new Error('Unauthorized');
+
+    const post = await prisma.post.findUnique({
+        where: {
+            id,
+            userId: session.user.id,
+        },
+        select: {
+            id: true,
+            title: true,
+            content: true,
+            isFolder: true,
+            path: true,
+            level: true,
+            slug: true,
+        },
+    });
+
+    if (!post) throw new Error('Post not found');
+    return post;
+}
+
+// 포스트 내용을 업데이트하는 액션
+export async function updatePost(formData: FormData) {
+    const session = await auth();
+    if (!session?.user?.id) throw new Error('Unauthorized');
+
+    const id = formData.get('id') as string;
+    const title = formData.get('title') as string;
+    const content = formData.get('content') as string;
+
+    if (!id) throw new Error('Post ID is required');
+
+    const post = await prisma.post.findUnique({
+        where: {id},
+        select: {userId: true},
+    });
+
+    if (post?.userId !== session.user.id) {
+        throw new Error('Unauthorized');
+    }
+
+    const updateData: any = {};
+
+    if (title) {
+        updateData.title = title;
+        updateData.slug = title.toLowerCase().replace(/\s+/g, '-');
+    }
+
+    if (content) {
+        updateData.content = content;
+    }
+
+    await prisma.post.update({
+        where: {id},
+        data: updateData,
+    });
+
+    revalidatePath('/posts');
+}

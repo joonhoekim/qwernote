@@ -29,19 +29,30 @@ interface TreeData {
     children: TreeData[];
 }
 
+interface PostTreeProps {
+    categoryId: string;
+    onPostSelect?: (postId: string) => void;
+    selectedPostId?: string;
+    onTitleChange?: (newTitle: string) => void;
+}
+
+interface NodeProps {
+    node: any;
+    style: any;
+    dragHandle: any;
+    categoryId: string;
+    onUpdate: () => Promise<void>;
+    onTitleChange?: (newTitle: string) => void;
+}
+
 const Node = ({
     node,
     style,
     dragHandle,
     categoryId,
     onUpdate,
-}: {
-    node: any;
-    style: any;
-    dragHandle: any;
-    categoryId: string;
-    onUpdate: () => Promise<void>;
-}) => {
+    onTitleChange,
+}: NodeProps) => {
     const indent = node.level * 24;
 
     const handleCreate = async (
@@ -105,6 +116,7 @@ const Node = ({
             formData.append('slug', newName.toLowerCase().replace(/\s+/g, '-'));
             await movePost(formData);
             await onUpdate();
+            onTitleChange?.(newName);
             toast.success('이름이 변경되었습니다.');
         } catch (error) {
             toast.error('이름 변경에 실패했습니다.');
@@ -176,7 +188,12 @@ const Node = ({
     );
 };
 
-export const PostTree = ({categoryId}: {categoryId: string}) => {
+export const PostTree = ({
+    categoryId,
+    onPostSelect,
+    selectedPostId,
+    onTitleChange,
+}: PostTreeProps) => {
     const [treeData, setTreeData] = useState<TreeData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -242,6 +259,12 @@ export const PostTree = ({categoryId}: {categoryId: string}) => {
         }
     };
 
+    const handleNodeSelect = (node: TreeData) => {
+        if (!node.isFolder && onPostSelect) {
+            onPostSelect(node.id);
+        }
+    };
+
     return (
         <div>
             <div className="mb-2 flex gap-2">
@@ -274,12 +297,15 @@ export const PostTree = ({categoryId}: {categoryId: string}) => {
                         data={treeData}
                         indent={24}
                         rowHeight={32}
-                        onMove={handleMove}>
+                        onMove={handleMove}
+                        onSelect={handleNodeSelect}
+                        selection={selectedPostId}>
                         {(props) => (
                             <Node
                                 {...props}
                                 categoryId={categoryId}
                                 onUpdate={updateTreeData}
+                                onTitleChange={onTitleChange}
                             />
                         )}
                     </Tree>
