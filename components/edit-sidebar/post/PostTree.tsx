@@ -1,35 +1,113 @@
 'use client';
 
-import { movePost, createPost, deletePost } from '@/actions/post-actions';
-import { Button } from '@/components/ui/button';
+import {
+    createPost,
+    deletePost,
+    fetchPostTree,
+    movePost,
+} from '@/actions/post-actions';
+import {Button} from '@/components/ui/button';
 import {
     ContextMenu,
     ContextMenuContent,
     ContextMenuItem,
     ContextMenuTrigger,
 } from '@/components/ui/context-menu';
-import { cn } from '@/lib/utils';
-import { Folder, File, Plus } from 'lucide-react';
-import { useParams } from 'next/navigation';
-import React from 'react';
-import { Tree } from 'react-arborist';
-import { useOptimistic } from 'react';
-import { toast } from 'sonner';
+import {cn} from '@/lib/utils';
+import {File, Folder, Plus} from 'lucide-react';
+import {useParams} from 'next/navigation';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Tree} from 'react-arborist';
+import {toast} from 'sonner';
 
-const Node = ({ node, style, dragHandle }) => {
+interface TreeData {
+    id: string;
+    name: string;
+    isFolder: boolean;
+    path: string;
+    level: number;
+    children: TreeData[];
+}
+
+const Node = ({
+    node,
+    style,
+    dragHandle,
+    categoryId,
+    onUpdate,
+}: {
+    node: any;
+    style: any;
+    dragHandle: any;
+    categoryId: string;
+    onUpdate: () => Promise<void>;
+}) => {
     const indent = node.level * 24;
 
-    const handleCreate = async (position: 'before' | 'after' | 'child', isFolder: boolean) => {
+    const handleCreate = async (
+        position: 'before' | 'after' | 'child',
+        isFolder: boolean,
+    ) => {
         const formData = new FormData();
-        formData.append('title', isFolder ? 'New Folder' : 'New Post');
-        formData.append('parentId', position === 'child' ? node.id : node.parentId);
+        const title = isFolder ? 'New Folder' : 'New Post';
+        formData.append('title', title);
+        formData.append(
+            'parentId',
+            position === 'child' ? node.id : node.parentId,
+        );
         formData.append('isFolder', String(isFolder));
+        formData.append('slug', title.toLowerCase().replace(/\s+/g, '-'));
+        formData.append(
+            'level',
+            String(position === 'child' ? node.level + 1 : node.level),
+        );
+        formData.append(
+            'path',
+            position === 'child'
+                ? `${node.data.path}/${title}`
+                : node.data.path,
+        );
+        formData.append('categoryId', categoryId);
 
         try {
             await createPost(formData);
-            toast.success(isFolder ? '폴더가 생성되었습니다.' : '포스트가 생성되었습니다.');
+            await onUpdate();
+            toast.success(
+                isFolder
+                    ? '폴더가 생성되었습니다.'
+                    : '포스트가 생성되었습니다.',
+            );
         } catch (error) {
             toast.error('생성에 실패했습니다.');
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('id', node.id);
+            await deletePost(formData);
+            await onUpdate();
+            toast.success('삭제되었습니다.');
+        } catch (error) {
+            toast.error('삭제에 실패했습니다.');
+        }
+    };
+
+    const handleRename = async () => {
+        const newName = prompt('새 이름을 입력하세요:', node.data.name);
+        if (!newName) return;
+
+        try {
+            const formData = new FormData();
+            formData.append('id', node.id);
+            formData.append('title', newName);
+            formData.append('slug', newName.toLowerCase().replace(/\s+/g, '-'));
+            await movePost(formData);
+            await onUpdate();
+            toast.success('이름이 변경되었습니다.');
+        } catch (error) {
+            toast.error('이름 변경에 실패했습니다.');
         }
     };
 
@@ -42,7 +120,7 @@ const Node = ({ node, style, dragHandle }) => {
             }}
             className={cn(
                 'flex h-8 cursor-pointer items-center rounded-sm px-2 hover:bg-accent',
-                node.isSelected && 'bg-accent'
+                node.isSelected && 'bg-accent',
             )}>
             <ContextMenu>
                 <ContextMenuTrigger className="flex-1 truncate">
@@ -56,30 +134,40 @@ const Node = ({ node, style, dragHandle }) => {
                     </span>
                 </ContextMenuTrigger>
                 <ContextMenuContent>
-                    <ContextMenuItem onSelect={() => handleCreate('before', false)}>
+                    <ContextMenuItem
+                        onSelect={() => handleCreate('before', false)}>
                         위에 포스트 추가
                     </ContextMenuItem>
-                    <ContextMenuItem onSelect={() => handleCreate('before', true)}>
+                    <ContextMenuItem
+                        onSelect={() => handleCreate('before', true)}>
                         위에 폴더 추가
                     </ContextMenuItem>
-                    <ContextMenuItem onSelect={() => handleCreate('after', false)}>
+                    <ContextMenuItem
+                        onSelect={() => handleCreate('after', false)}>
                         아래에 포스트 추가
                     </ContextMenuItem>
-                    <ContextMenuItem onSelect={() => handleCreate('after', true)}>
+                    <ContextMenuItem
+                        onSelect={() => handleCreate('after', true)}>
                         아래에 폴더 추가
                     </ContextMenuItem>
                     {node.data.isFolder && (
                         <>
-                            <ContextMenuItem onSelect={() => handleCreate('child', false)}>
+                            <ContextMenuItem
+                                onSelect={() => handleCreate('child', false)}>
                                 하위 포스트 추가
                             </ContextMenuItem>
-                            <ContextMenuItem onSelect={() => handleCreate('child', true)}>
+                            <ContextMenuItem
+                                onSelect={() => handleCreate('child', true)}>
                                 하위 폴더 추가
                             </ContextMenuItem>
                         </>
                     )}
-                    <ContextMenuItem>이름 변경</ContextMenuItem>
-                    <ContextMenuItem className="text-destructive">
+                    <ContextMenuItem onSelect={handleRename}>
+                        이름 변경
+                    </ContextMenuItem>
+                    <ContextMenuItem
+                        onSelect={handleDelete}
+                        className="text-destructive">
                         삭제
                     </ContextMenuItem>
                 </ContextMenuContent>
@@ -88,19 +176,41 @@ const Node = ({ node, style, dragHandle }) => {
     );
 };
 
-export const PostTree = ({ categoryId }: { categoryId: string }) => {
-    const [optimisticData, setOptimisticData] = useOptimistic(
-        null,
-        (state, newData) => newData
-    );
+export const PostTree = ({categoryId}: {categoryId: string}) => {
+    const [treeData, setTreeData] = useState<TreeData[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleMove = async ({ dragIds, parentId, index }) => {
+    const updateTreeData = useCallback(async () => {
+        if (!categoryId) return;
+
+        try {
+            setIsLoading(true);
+            const data = await fetchPostTree(categoryId);
+            setTreeData(data);
+        } catch (error) {
+            toast.error('포스트 목록을 불러오는데 실패했습니다.');
+            console.error('Failed to fetch post tree:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [categoryId]);
+
+    useEffect(() => {
+        updateTreeData();
+    }, [updateTreeData]);
+
+    const handleMove = async ({dragIds, parentId, index}) => {
+        if (!categoryId) return;
+
         const formData = new FormData();
         formData.append('id', dragIds[0]);
         formData.append('parentId', parentId || '');
+        formData.append('order', String(index));
+        formData.append('level', String(parentId ? 1 : 0));
 
         try {
             await movePost(formData);
+            await updateTreeData();
             toast.success('이동되었습니다.');
         } catch (error) {
             toast.error('이동에 실패했습니다.');
@@ -108,14 +218,25 @@ export const PostTree = ({ categoryId }: { categoryId: string }) => {
     };
 
     const handleCreateRoot = async (isFolder: boolean) => {
+        if (!categoryId) return;
+
         const formData = new FormData();
-        formData.append('title', isFolder ? 'New Folder' : 'New Post');
+        const title = isFolder ? 'New Folder' : 'New Post';
+        formData.append('title', title);
         formData.append('isFolder', String(isFolder));
         formData.append('categoryId', categoryId);
+        formData.append('slug', title.toLowerCase().replace(/\s+/g, '-'));
+        formData.append('level', '0');
+        formData.append('path', `/${title}`);
 
         try {
             await createPost(formData);
-            toast.success(isFolder ? '폴더가 생성되었습니다.' : '포스트가 생성되었습니다.');
+            await updateTreeData();
+            toast.success(
+                isFolder
+                    ? '폴더가 생성되었습니다.'
+                    : '포스트가 생성되었습니다.',
+            );
         } catch (error) {
             toast.error('생성에 실패했습니다.');
         }
@@ -142,15 +263,27 @@ export const PostTree = ({ categoryId }: { categoryId: string }) => {
                 </Button>
             </div>
             <div className="h-[calc(100vh-200px)] overflow-auto rounded-md border bg-background p-2">
-                <Tree
-                    data={optimisticData}
-                    indent={24}
-                    rowHeight={32}
-                    onMove={handleMove}
-                >
-                    {Node}
-                </Tree>
-                {(!optimisticData || optimisticData.length === 0) && (
+                {isLoading ? (
+                    <div className="flex h-full items-center justify-center">
+                        <span className="text-sm text-muted-foreground">
+                            로딩 중...
+                        </span>
+                    </div>
+                ) : treeData.length > 0 ? (
+                    <Tree
+                        data={treeData}
+                        indent={24}
+                        rowHeight={32}
+                        onMove={handleMove}>
+                        {(props) => (
+                            <Node
+                                {...props}
+                                categoryId={categoryId}
+                                onUpdate={updateTreeData}
+                            />
+                        )}
+                    </Tree>
+                ) : (
                     <ContextMenu>
                         <ContextMenuTrigger className="flex h-full w-full items-center justify-center p-4">
                             <span className="text-sm text-muted-foreground">
@@ -158,10 +291,12 @@ export const PostTree = ({ categoryId }: { categoryId: string }) => {
                             </span>
                         </ContextMenuTrigger>
                         <ContextMenuContent>
-                            <ContextMenuItem onSelect={() => handleCreateRoot(false)}>
+                            <ContextMenuItem
+                                onSelect={() => handleCreateRoot(false)}>
                                 포스트 추가
                             </ContextMenuItem>
-                            <ContextMenuItem onSelect={() => handleCreateRoot(true)}>
+                            <ContextMenuItem
+                                onSelect={() => handleCreateRoot(true)}>
                                 폴더 추가
                             </ContextMenuItem>
                         </ContextMenuContent>

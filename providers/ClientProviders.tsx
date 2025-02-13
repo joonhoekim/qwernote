@@ -30,7 +30,7 @@ export function ClientProviders({children}: {children: React.ReactNode}) {
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            <SessionProvider>{children}</SessionProvider>)
+            <SessionProvider>{children}</SessionProvider>
         </ThemeProvider>
     );
 }

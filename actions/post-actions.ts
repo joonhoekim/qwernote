@@ -7,6 +7,25 @@ import {slugify} from '@/lib/utils/slugify';
 import {revalidatePath} from 'next/cache';
 import {z} from 'zod';
 
+interface TreeItem {
+    id: string;
+    title: string;
+    parentId: string | null;
+    order: string;
+    isFolder: boolean;
+    path: string;
+    level: number;
+}
+
+interface TreeNode {
+    id: string;
+    name: string;
+    isFolder: boolean;
+    path: string;
+    level: number;
+    children: TreeNode[];
+}
+
 // 트리 데이터를 가져오는 액션
 export async function fetchPostTree(categoryId: string) {
     const session = await auth();
@@ -23,19 +42,28 @@ export async function fetchPostTree(categoryId: string) {
             title: true,
             parentId: true,
             order: true,
+            isFolder: true,
+            path: true,
+            level: true,
         },
     });
 
     return buildTree(posts);
 }
 
-function buildTree(items: any[], parentId: string | null = null): any[] {
+function buildTree(
+    items: TreeItem[],
+    parentId: string | null = null,
+): TreeNode[] {
     return items
         .filter((item) => item.parentId === parentId)
         .sort((a, b) => a.order.localeCompare(b.order))
         .map((item) => ({
             id: item.id,
             name: item.title,
+            isFolder: item.isFolder,
+            path: item.path,
+            level: item.level,
             children: buildTree(items, item.id),
         }));
 }
@@ -50,6 +78,29 @@ export async function createPost(formData: FormData) {
     const categoryId = formData.get('categoryId') as string;
     const isFolder = formData.get('isFolder') === 'true';
 
+    if (!title || !categoryId) {
+        throw new Error('Title and categoryId are required');
+    }
+
+    // 같은 카테고리 내에서 중복되지 않는 slug 생성
+    const baseSlug = title.toLowerCase().replace(/\s+/g, '-');
+    let slug = baseSlug;
+    let counter = 1;
+
+    while (true) {
+        const existing = await prisma.post.findFirst({
+            where: {
+                userId: session.user.id,
+                categoryId,
+                slug,
+            },
+        });
+
+        if (!existing) break;
+        slug = `${baseSlug}-${counter}`;
+        counter++;
+    }
+
     const siblings = await prisma.post.findMany({
         where: {parentId},
         select: {order: true},
@@ -60,17 +111,42 @@ export async function createPost(formData: FormData) {
     const lastOrder = siblings[0]?.order;
     const newOrder = generateOrder(lastOrder);
 
-    const post = await prisma.post.create({
-        data: {
-            title,
-            parentId,
-            categoryId,
-            order: newOrder,
-            userId: session.user.id,
-            content: '',
-            isFolder,
-            slug: title.toLowerCase().replace(/\s+/g, '-'),
+    // path가 없으면 기본값 설정
+    const path = (formData.get('path') as string) || `/${title}`;
+    const level = parseInt((formData.get('level') as string) || '0');
+
+    const createData: any = {
+        title,
+        order: newOrder,
+        userId: session.user.id,
+        content: '',
+        isFolder,
+        slug,
+        path,
+        level,
+        category: {
+            connect: {
+                id: categoryId,
+            },
         },
+        user: {
+            connect: {
+                id: session.user.id,
+            },
+        },
+    };
+
+    // parentId가 있으면 parent 관계 설정
+    if (parentId) {
+        createData.parent = {
+            connect: {
+                id: parentId,
+            },
+        };
+    }
+
+    const post = await prisma.post.create({
+        data: createData,
     });
 
     revalidatePath('/posts');
@@ -86,10 +162,13 @@ export async function movePost(formData: FormData) {
     const parentId = formData.get('parentId') as string | null;
     const prevId = formData.get('prevId') as string | null;
     const nextId = formData.get('nextId') as string | null;
+    const level = parseInt((formData.get('level') as string) || '0');
+    const path = formData.get('path') as string;
+    const title = formData.get('title') as string;
 
     const siblings = await prisma.post.findMany({
         where: {parentId},
-        select: {order: true},
+        select: {id: true, order: true},
         orderBy: {order: 'asc'},
     });
 
@@ -101,12 +180,38 @@ export async function movePost(formData: FormData) {
         : null;
     const newOrder = generateOrder(prevOrder, nextOrder);
 
+    const updateData: any = {
+        order: newOrder,
+        level,
+    };
+
+    // title이 있으면 업데이트
+    if (title) {
+        updateData.title = title;
+        updateData.slug = title.toLowerCase().replace(/\s+/g, '-');
+    }
+
+    // parentId가 있으면 parent 관계 업데이트
+    if (parentId) {
+        updateData.parent = {
+            connect: {
+                id: parentId,
+            },
+        };
+    } else {
+        updateData.parent = {
+            disconnect: true,
+        };
+    }
+
+    // path가 있으면 업데이트
+    if (path) {
+        updateData.path = path;
+    }
+
     await prisma.post.update({
         where: {id},
-        data: {
-            parentId,
-            order: newOrder,
-        },
+        data: updateData,
     });
 
     revalidatePath('/posts');

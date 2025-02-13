@@ -1,7 +1,8 @@
 'use client';
 
-import { getCategoriesByHandle } from '@/actions/category-actions';
-import { Button } from '@/components/ui/button';
+import {getCategoriesByHandle} from '@/actions/category-actions';
+import {deleteCategory, updateCategoryName} from '@/actions/category-actions';
+import {Button} from '@/components/ui/button';
 import {
     Command,
     CommandEmpty,
@@ -10,36 +11,39 @@ import {
     CommandItem,
     CommandList,
 } from '@/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
-import { removeAtSymbol } from '@/lib/utils/string-util';
-import { Check, ChevronsUpDown } from 'lucide-react';
-import { useParams } from 'next/navigation';
-import * as React from 'react';
-import useSWR from 'swr';
 import {
     ContextMenu,
     ContextMenuContent,
     ContextMenuItem,
     ContextMenuTrigger,
-} from "@/components/ui/context-menu";
-import { Category } from "@prisma/client";
-import { useState } from "react";
-import { deleteCategory, updateCategoryName } from "@/actions/category-actions";
+} from '@/components/ui/context-menu';
 import {
     Dialog,
     DialogContent,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
+} from '@/components/ui/dialog';
+import {Input} from '@/components/ui/input';
+import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
+import {cn} from '@/lib/utils';
+import {removeAtSymbol} from '@/lib/utils/string-util';
+import {Category} from '@prisma/client';
+import {Check, ChevronsUpDown} from 'lucide-react';
+import {useParams} from 'next/navigation';
+import * as React from 'react';
+import {useState} from 'react';
+import {toast} from 'sonner';
+import useSWR from 'swr';
 
-export function CategorySelector() {
+interface CategorySelectorProps {
+    onCategorySelect: (categoryId: string) => void;
+}
+
+export function CategorySelector({onCategorySelect}: CategorySelectorProps) {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState('');
-    const params = useParams<{ handle: string }>();
+    const params = useParams<{handle: string}>();
     const handle = removeAtSymbol(params.handle);
     const cacheKey = `categories-${handle}`;
 
@@ -59,8 +63,10 @@ export function CategorySelector() {
     } = useSWR(cacheKey, () => fetcher(handle));
 
     const [isRenameDialogOpen, setIsRenameDialogOpen] = useState(false);
-    const [categoryToRename, setCategoryToRename] = useState<Category | null>(null);
-    const [newCategoryName, setNewCategoryName] = useState("");
+    const [categoryToRename, setCategoryToRename] = useState<Category | null>(
+        null,
+    );
+    const [newCategoryName, setNewCategoryName] = useState('');
 
     const handleRename = async (category: Category) => {
         setCategoryToRename(category);
@@ -71,9 +77,12 @@ export function CategorySelector() {
     const handleRenameSubmit = async () => {
         if (!categoryToRename) return;
 
-        const result = await updateCategoryName(categoryToRename.id, newCategoryName);
+        const result = await updateCategoryName(
+            categoryToRename.id,
+            newCategoryName,
+        );
         if (result.success) {
-            toast.success("카테고리 이름이 변경되었습니다.");
+            toast.success('카테고리 이름이 변경되었습니다.');
             setIsRenameDialogOpen(false);
             // 데이터 갱신
             await mutate();
@@ -82,25 +91,27 @@ export function CategorySelector() {
                 setValue(newCategoryName);
             }
         } else {
-            toast.error(result.error || "카테고리 이름 변경에 실패했습니다.");
+            toast.error(result.error || '카테고리 이름 변경에 실패했습니다.');
         }
     };
 
     const handleDelete = async (categoryId: string) => {
-        if (!confirm("정말로 이 카테고리를 삭제하시겠습니까?")) return;
+        if (!confirm('정말로 이 카테고리를 삭제하시겠습니까?')) return;
 
         const result = await deleteCategory(categoryId);
         if (result.success) {
-            toast.success("카테고리가 삭제되었습니다.");
+            toast.success('카테고리가 삭제되었습니다.');
             // 데이터 갱신
             await mutate();
             // 선택된 카테고리가 삭제된 경우 선택 초기화
-            const deletedCategory = categories.find(cat => cat.id === categoryId);
+            const deletedCategory = categories.find(
+                (cat) => cat.id === categoryId,
+            );
             if (value === deletedCategory?.name) {
                 setValue('');
             }
         } else {
-            toast.error(result.error || "카테고리 삭제에 실패했습니다.");
+            toast.error(result.error || '카테고리 삭제에 실패했습니다.');
         }
     };
 
@@ -131,8 +142,9 @@ export function CategorySelector() {
                         {isLoading
                             ? 'Loading...'
                             : value
-                                ? categories.find((cat) => cat.name === value)?.name
-                                : 'Select category...'}
+                              ? categories.find((cat) => cat.name === value)
+                                    ?.name
+                              : 'Select category...'}
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                 </PopoverTrigger>
@@ -156,6 +168,19 @@ export function CategorySelector() {
                                                             ? ''
                                                             : currentValue,
                                                     );
+                                                    // 선택된 카테고리의 ID를 상위 컴포넌트로 전달
+                                                    const selectedCategory =
+                                                        categories.find(
+                                                            (cat) =>
+                                                                cat.name ===
+                                                                currentValue,
+                                                        );
+                                                    onCategorySelect(
+                                                        currentValue === value
+                                                            ? ''
+                                                            : selectedCategory?.id ||
+                                                                  '',
+                                                    );
                                                     setOpen(false);
                                                 }}>
                                                 {category.name}
@@ -170,13 +195,17 @@ export function CategorySelector() {
                                             </CommandItem>
                                         </ContextMenuTrigger>
                                         <ContextMenuContent>
-                                            <ContextMenuItem onClick={() => handleRename(category)}>
+                                            <ContextMenuItem
+                                                onClick={() =>
+                                                    handleRename(category)
+                                                }>
                                                 이름 변경
                                             </ContextMenuItem>
                                             <ContextMenuItem
                                                 className="text-destructive"
-                                                onClick={() => handleDelete(category.id)}
-                                            >
+                                                onClick={() =>
+                                                    handleDelete(category.id)
+                                                }>
                                                 삭제
                                             </ContextMenuItem>
                                         </ContextMenuContent>
@@ -188,7 +217,9 @@ export function CategorySelector() {
                 </PopoverContent>
             </Popover>
 
-            <Dialog open={isRenameDialogOpen} onOpenChange={setIsRenameDialogOpen}>
+            <Dialog
+                open={isRenameDialogOpen}
+                onOpenChange={setIsRenameDialogOpen}>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>카테고리 이름 변경</DialogTitle>
@@ -203,8 +234,7 @@ export function CategorySelector() {
                     <DialogFooter>
                         <Button
                             variant="outline"
-                            onClick={() => setIsRenameDialogOpen(false)}
-                        >
+                            onClick={() => setIsRenameDialogOpen(false)}>
                             취소
                         </Button>
                         <Button onClick={handleRenameSubmit}>변경</Button>

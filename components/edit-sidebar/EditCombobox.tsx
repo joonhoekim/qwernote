@@ -3,6 +3,10 @@
 import {CategorySection} from '@/components/edit-sidebar/category/CategorySection';
 import * as React from 'react';
 
-export function ComboboxDemo() {
-    return <CategorySection />;
+interface ComboboxDemoProps {
+    onCategorySelect: (categoryId: string) => void;
+}
+
+export function ComboboxDemo({onCategorySelect}: ComboboxDemoProps) {
+    return <CategorySection onCategorySelect={onCategorySelect} />;
 }

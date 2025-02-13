@@ -1,4 +1,7 @@
+'use client';
+
 // import EditTree from "@/components/test-components/EditTree";
+import {ModeToggle} from '@/components/ModeToggle';
 import {ComboboxDemo} from '@/components/edit-sidebar/EditCombobox';
 import {CategoryTree} from '@/components/edit-sidebar/category/CategoryTree';
 import {PostTree} from '@/components/edit-sidebar/post/PostTree';
@@ -13,10 +16,15 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-
-import {ModeToggle} from '../theme/ModeToggle';
+import {useState} from 'react';
 
 export function AppSidebar() {
+    const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+
+    const handleCategorySelect = (categoryId: string) => {
+        setSelectedCategoryId(categoryId);
+    };
+
     return (
         <Sidebar>
             <SidebarContent>
@@ -27,7 +35,9 @@ export function AppSidebar() {
                     <SidebarGroupLabel>Categories</SidebarGroupLabel>
                     <SidebarGroupContent className="rounded-lg border">
                         <SidebarMenu>
-                            <ComboboxDemo />
+                            <ComboboxDemo
+                                onCategorySelect={handleCategorySelect}
+                            />
                             {/*<EditTree />*/}
                             {/*<CategoryTree />*/}
                         </SidebarMenu>
@@ -37,7 +47,13 @@ export function AppSidebar() {
                     <SidebarGroupLabel>Posts</SidebarGroupLabel>
                     <SidebarGroupContent className="rounded-lg border">
                         <SidebarMenu>
-                            <PostTree />
+                            {selectedCategoryId ? (
+                                <PostTree categoryId={selectedCategoryId} />
+                            ) : (
+                                <div className="flex h-[100px] items-center justify-center text-sm text-muted-foreground">
+                                    카테고리를 선택해주세요
+                                </div>
+                            )}
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
