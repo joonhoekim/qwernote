@@ -1,0 +1,1309 @@
+{
+	"tldrawFileFormatVersion": 1,
+	"schema": {
+		"schemaVersion": 2,
+		"sequences": {
+			"com.tldraw.store": 4,
+			"com.tldraw.asset": 1,
+			"com.tldraw.camera": 1,
+			"com.tldraw.document": 2,
+			"com.tldraw.instance": 25,
+			"com.tldraw.instance_page_state": 5,
+			"com.tldraw.page": 1,
+			"com.tldraw.instance_presence": 6,
+			"com.tldraw.pointer": 1,
+			"com.tldraw.shape": 4,
+			"com.tldraw.asset.bookmark": 2,
+			"com.tldraw.asset.image": 5,
+			"com.tldraw.asset.video": 5,
+			"com.tldraw.shape.group": 0,
+			"com.tldraw.shape.text": 2,
+			"com.tldraw.shape.bookmark": 2,
+			"com.tldraw.shape.draw": 2,
+			"com.tldraw.shape.geo": 9,
+			"com.tldraw.shape.note": 8,
+			"com.tldraw.shape.line": 5,
+			"com.tldraw.shape.frame": 0,
+			"com.tldraw.shape.arrow": 5,
+			"com.tldraw.shape.highlight": 1,
+			"com.tldraw.shape.embed": 4,
+			"com.tldraw.shape.image": 4,
+			"com.tldraw.shape.video": 2,
+			"com.tldraw.binding.arrow": 0
+		}
+	},
+	"records": [
+		{
+			"gridSize": 10,
+			"name": "",
+			"meta": {},
+			"id": "document:document",
+			"typeName": "document"
+		},
+		{
+			"meta": {},
+			"id": "page:page",
+			"name": "Page 1",
+			"index": "a1",
+			"typeName": "page"
+		},
+		{
+			"id": "pointer:pointer",
+			"typeName": "pointer",
+			"x": 1476.714077606803,
+			"y": 1884.082075689294,
+			"lastActivityTimestamp": 1739792616064,
+			"meta": {}
+		},
+		{
+			"followingUserId": null,
+			"opacityForNextShape": 1,
+			"stylesForNextShape": {
+				"tldraw:geo": "rectangle",
+				"tldraw:dash": "solid",
+				"tldraw:font": "sans",
+				"tldraw:horizontalAlign": "start"
+			},
+			"brush": null,
+			"scribbles": [],
+			"cursor": {
+				"type": "default",
+				"rotation": 0
+			},
+			"isFocusMode": false,
+			"exportBackground": true,
+			"isDebugMode": false,
+			"isToolLocked": false,
+			"screenBounds": {
+				"x": 0,
+				"y": 0,
+				"w": 1583,
+				"h": 1084
+			},
+			"insets": [
+				false,
+				false,
+				true,
+				false
+			],
+			"zoomBrush": null,
+			"isGridMode": false,
+			"isPenMode": false,
+			"chatMessage": "",
+			"isChatting": false,
+			"highlightedUserIds": [],
+			"isFocused": true,
+			"devicePixelRatio": 1,
+			"isCoarsePointer": false,
+			"isHoveringCanvas": true,
+			"openMenus": [],
+			"isChangingStyle": false,
+			"isReadonly": false,
+			"meta": {},
+			"duplicateProps": null,
+			"id": "instance:instance",
+			"currentPageId": "page:page",
+			"typeName": "instance"
+		},
+		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [],
+			"hoveredShapeId": null,
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:page",
+			"pageId": "page:page",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": -44.164899974196665,
+			"y": -1476.3937270491936,
+			"z": 0.6205720640384147,
+			"meta": {},
+			"id": "camera:page:page",
+			"typeName": "camera"
+		},
+		{
+			"x": 454.02526780615,
+			"y": 136.68972706426314,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:DJYVI0A3jv3PYO7dv7uBb",
+			"type": "geo",
+			"props": {
+				"w": 438.8231489889038,
+				"h": 1071.128012033878,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "main\n/\n\n- 메인 화면\n- 유저들의 글들을 큐레이션\n- 본인 에디터로 바로 이동하는 버튼\n- 뷰나 라이크는 나중에 생각",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a1",
+			"typeName": "shape"
+		},
+		{
+			"x": 104.87282585728923,
+			"y": 138.29340302052157,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:fZKGwIbqoXRzrkj6ranPY",
+			"type": "geo",
+			"props": {
+				"w": 150,
+				"h": 131,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "auth\n/login\n/logout",
+				"align": "middle",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a21Pv",
+			"typeName": "shape"
+		},
+		{
+			"x": 1161.769139474657,
+			"y": 135.89094543210012,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:7uPrXBxqKyu0lnPbmCZMC",
+			"type": "geo",
+			"props": {
+				"w": 427.0861804605975,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "edit\n/[@handle]/edit\n- 에디터를 불러옴\n- 아무 카테고리도 선택되지 않은 상태",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a46cE",
+			"typeName": "shape"
+		},
+		{
+			"x": 1712.9434894432666,
+			"y": 135.89094543210012,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:2SM1Rvd2skLFq5XnFy2eZ",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "edit\n/[@handle]/edit/[categoryId]\n- 에디터에서 카테고리가 선택된 상태\n- 해당 카테고리의 포스트 카테고리가 준비됨",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a63ZB",
+			"typeName": "shape"
+		},
+		{
+			"x": 2264.5747491815773,
+			"y": 135.89094543210012,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:dCBxnAC8FThie-r2RuDuS",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "edit\n/[@handle]/edit/[categoryId]/[postId]\n- 에디터에서 카테고리/포스트가 모두 선택된 상태\n- 해당 카테고리의 포스트 내용이 에디터에 싱크됨",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a8Ayv",
+			"typeName": "shape"
+		},
+		{
+			"x": 949.9536715670209,
+			"y": 329.744574469677,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Ez3zLRsHXuhXwijwbd6yv",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 141.87803809981233,
+					"y": -23.646339683302017
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a58NB",
+			"typeName": "shape"
+		},
+		{
+			"x": 791.1853908362785,
+			"y": 371.97018104700214,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:pp1EUzpP-20ae6xfAZNK-",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": -234.77437256992755,
+					"y": -114.85364989032428
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a32Iy",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "binding:pVW_q9qTzlDpM420j5hMc",
+			"type": "arrow",
+			"fromId": "shape:pp1EUzpP-20ae6xfAZNK-",
+			"toId": "shape:fZKGwIbqoXRzrkj6ranPY",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4992385449288126,
+					"y": 0.5718205900438025
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"x": 1392.478028497388,
+			"y": 294.2750649447239,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:2zhI8qcNMFlmyL7IUB4FQ",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 249.97559093776454,
+					"y": -11.823169841650952
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a77du",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "binding:ZYWQUPivantOoXLHPTXI4",
+			"type": "arrow",
+			"fromId": "shape:2zhI8qcNMFlmyL7IUB4FQ",
+			"toId": "shape:7uPrXBxqKyu0lnPbmCZMC",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.5401928219122415,
+					"y": 0.5159604455091504
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:1FnQy3AdFY3byBx1BvpP1",
+			"type": "arrow",
+			"fromId": "shape:2zhI8qcNMFlmyL7IUB4FQ",
+			"toId": "shape:2SM1Rvd2skLFq5XnFy2eZ",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.7469035859027335,
+					"y": 0.3508928148761872
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"x": 1907.6304287407543,
+			"y": 297.65311347090994,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:w6TuNMssBnJAgOD1H0dhi",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 283.75607619962466,
+					"y": -30.402436735674087
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "a96Ry",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "binding:5AsBzJwP0igffaqsXZR4C",
+			"type": "arrow",
+			"fromId": "shape:w6TuNMssBnJAgOD1H0dhi",
+			"toId": "shape:2SM1Rvd2skLFq5XnFy2eZ",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4548760263959993,
+					"y": 0.5269649542180148
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:noXoKxpiNpHx4zMO8f8we",
+			"type": "arrow",
+			"fromId": "shape:w6TuNMssBnJAgOD1H0dhi",
+			"toId": "shape:dCBxnAC8FThie-r2RuDuS",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.32228922580707275,
+					"y": 0.3343860518128909
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:VDKjoWWbGESBjdjmCHSPs",
+			"type": "arrow",
+			"fromId": "shape:Ez3zLRsHXuhXwijwbd6yv",
+			"toId": "shape:7uPrXBxqKyu0lnPbmCZMC",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4255047194387029,
+					"y": 0.40041310406607605
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"x": 1161.769139474657,
+			"y": 898.951863823952,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:8gVoR2LSZLc_bpjhQsKWq",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "view\n/[@handle]/\n- 유저 조회\n- 유저의 카테고리들과, 카테고리별 포스트 일부 목록을 제공함\n- 유저의 자기소개 조회\n- 유저가 제공하는 github 등의 링크 제공",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "aA73r",
+			"typeName": "shape"
+		},
+		{
+			"x": 1712.9434894432666,
+			"y": 898.951863823952,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:J-_XSGm2JlwiXOla2jyDO",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "view\n/[@handle]/edit/[categoryId]\n- 유저의 특정 카테고리로 들어온 상태",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "aBAjv",
+			"typeName": "shape"
+		},
+		{
+			"x": 1392.478028497388,
+			"y": 1057.3359833365757,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:T4wcTIYiIpA1Zj72p8BzP",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 249.97559093776454,
+					"y": -11.823169841650952
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "aC5DO",
+			"typeName": "shape"
+		},
+		{
+			"x": 2264.5747491815773,
+			"y": 898.951863823952,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:MypnyiNorIZw6QbFmZzQl",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "edit\n/[@handle]/edit/[categoryId]/[postId]\n- 에디터에서 카테고리/포스트가 모두 선택된 상태\n- 해당 카테고리의 포스트 내용이 에디터에 싱크됨",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "aDC0I",
+			"typeName": "shape"
+		},
+		{
+			"x": 1907.6304287407543,
+			"y": 1060.7140318627617,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:AfOKqyi_UPs0iAcpBTUHf",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 283.75607619962466,
+					"y": -30.402436735674087
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "aE8mb",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "binding:vtgMl2cydju_itRys8caS",
+			"type": "arrow",
+			"fromId": "shape:T4wcTIYiIpA1Zj72p8BzP",
+			"toId": "shape:8gVoR2LSZLc_bpjhQsKWq",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.5401928219122415,
+					"y": 0.5159604455091504
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:vEcjwbiYxe_RZzq6TQI_w",
+			"type": "arrow",
+			"fromId": "shape:T4wcTIYiIpA1Zj72p8BzP",
+			"toId": "shape:J-_XSGm2JlwiXOla2jyDO",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.7469035859027335,
+					"y": 0.3508928148761872
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:LoUtbXgL1xtaJS4uq7vvX",
+			"type": "arrow",
+			"fromId": "shape:AfOKqyi_UPs0iAcpBTUHf",
+			"toId": "shape:J-_XSGm2JlwiXOla2jyDO",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4548760263959993,
+					"y": 0.5269649542180148
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:SPagtmMXyRWj-zzg6gcSD",
+			"type": "arrow",
+			"fromId": "shape:AfOKqyi_UPs0iAcpBTUHf",
+			"toId": "shape:MypnyiNorIZw6QbFmZzQl",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.32228922580707275,
+					"y": 0.3343860518128909
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"x": 1750.551172273105,
+			"y": 675.0004542715799,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:zblsnt6NwHJYGHwDD2Phv",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 542.359375,
+				"text": "? 어차피 카테고리도 아이디로 쓸 거면\n굳이 카테고리/포스트 아이디 두개 다 쓸 필요 있나?",
+				"font": "sans",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"index": "aF0qZ",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "binding:K0-BkhjhKugphiixzCk_M",
+			"type": "arrow",
+			"fromId": "shape:Ez3zLRsHXuhXwijwbd6yv",
+			"toId": "shape:DJYVI0A3jv3PYO7dv7uBb",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.5812302139490922,
+					"y": 0.3050662590696001
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:Me1oO4Mu0NCdZU4yekrw4",
+			"type": "arrow",
+			"fromId": "shape:pp1EUzpP-20ae6xfAZNK-",
+			"toId": "shape:DJYVI0A3jv3PYO7dv7uBb",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.3222464936081648,
+					"y": 0.2196567089455387
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"x": 171.81100701602787,
+			"y": 1680.1981067650518,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:ryswsRPNmlFIItQA6w-rG",
+			"type": "geo",
+			"props": {
+				"w": 438.8231489889038,
+				"h": 1071.128012033878,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "main\n/\n\n- 메인 화면\n- 유저들의 글들을 큐레이션\n- 본인 에디터로 바로 이동하는 버튼\n- 뷰나 라이크는 나중에 생각",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aD4Ti",
+			"typeName": "shape"
+		},
+		{
+			"x": -177.3414349328329,
+			"y": 1681.80178272131,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:EvrRVb4APVqgBUJQZaq36",
+			"type": "geo",
+			"props": {
+				"w": 150,
+				"h": 131,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "auth\n/login\n/logout",
+				"align": "middle",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aE2fn",
+			"typeName": "shape"
+		},
+		{
+			"x": 508.9711300461564,
+			"y": 1915.4785607477907,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:dzudKOScGRN6wNdtHy7v8",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": -234.77437256992755,
+					"y": -114.85364989032428
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aF2Vx",
+			"typeName": "shape"
+		},
+		{
+			"x": 879.554878684535,
+			"y": 1679.3993251328886,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:8TFhK5AZBvWqNsk9KohV_",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "edit\n/[@handle]/[postid]/edit\n- 에디터를 불러옴\n- 끝에 /edit 붙이는 게 편리할 것 같아서\n포스트 선택 안돼도 이렇게 처리하는게 나을 것 같음..? 아니면 그냥 라스트 세그먼트가 edit이면 리다이렉트 시키는 것도 좋을듯",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aG0x1",
+			"typeName": "shape"
+		},
+		{
+			"x": 667.7394107768988,
+			"y": 1873.2529541704655,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:tea4tOHCV4GPPy26wEgHQ",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 141.87803809981233,
+					"y": -23.646339683302017
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aHA5f",
+			"typeName": "shape"
+		},
+		{
+			"x": 1110.263767707266,
+			"y": 1837.7834446455124,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:WuRmeiIp3jp7cSryAw_9v",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 306.9654609458785,
+					"y": -4.899369963334038
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aJ8pD",
+			"typeName": "shape"
+		},
+		{
+			"x": 879.554878684535,
+			"y": 2442.4602435247402,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:gUxFuB9oTybtdyyDvNp_R",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "view\n/[@handle]/\n- 유저 조회\n- 유저의 카테고리들과, 카테고리별 포스트 일부 목록을 제공함\n- 유저의 자기소개 조회\n- 유저가 제공하는 github 등의 링크 제공",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aM4Kp",
+			"typeName": "shape"
+		},
+		{
+			"x": 1430.7292286531444,
+			"y": 2442.4602435247402,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Iuo1uRrBgLpC6594PXtKt",
+			"type": "geo",
+			"props": {
+				"w": 428,
+				"h": 306.9694990985794,
+				"geo": "rectangle",
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"dash": "solid",
+				"size": "m",
+				"font": "sans",
+				"text": "view\n/[@handle]/edit/[categoryId]\n- 유저의 특정 카테고리로 들어온 상태",
+				"align": "start",
+				"verticalAlign": "middle",
+				"growY": 0,
+				"url": "",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aN1d0",
+			"typeName": "shape"
+		},
+		{
+			"x": 1110.263767707266,
+			"y": 2600.8443630373645,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:EhlMRQMBC2aJzqLms5Rs3",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 249.97559093776454,
+					"y": -11.823169841650952
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aO0vv",
+			"typeName": "shape"
+		},
+		{
+			"x": 1625.4161679506321,
+			"y": 2604.2224115635504,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:cfbVvEOy0_6-Kz9851_Xh",
+			"type": "arrow",
+			"props": {
+				"dash": "solid",
+				"size": "m",
+				"fill": "none",
+				"color": "black",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"x": 343.44432044082305,
+					"y": -8.277418489520642
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "sans",
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aQCKP",
+			"typeName": "shape"
+		},
+		{
+			"x": 1129.9394679477216,
+			"y": 2170.1663420387595,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Zrpg703GN2X4WZ8cvCUvx",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 542.359375,
+				"text": "? 어차피 카테고리도 아이디로 쓸 거면\n굳이 카테고리/포스트 아이디 두개 다 쓸 필요 있나?",
+				"font": "sans",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aR3K5",
+			"typeName": "shape"
+		},
+		{
+			"meta": {},
+			"id": "binding:CrvDExzWMjssWXoSQcT7H",
+			"type": "arrow",
+			"fromId": "shape:tea4tOHCV4GPPy26wEgHQ",
+			"toId": "shape:ryswsRPNmlFIItQA6w-rG",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.5812302139490922,
+					"y": 0.3050662590696001
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:SAzRjN-_K2nnGPG61T623",
+			"type": "arrow",
+			"fromId": "shape:dzudKOScGRN6wNdtHy7v8",
+			"toId": "shape:ryswsRPNmlFIItQA6w-rG",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.3222464936081648,
+					"y": 0.2196567089455387
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:MSQBOyfO0LwWj-96uMkCc",
+			"type": "arrow",
+			"fromId": "shape:dzudKOScGRN6wNdtHy7v8",
+			"toId": "shape:EvrRVb4APVqgBUJQZaq36",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4992385449288126,
+					"y": 0.5718205900438025
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:iZgO6-Zac9732HCDBmNyW",
+			"type": "arrow",
+			"fromId": "shape:WuRmeiIp3jp7cSryAw_9v",
+			"toId": "shape:8TFhK5AZBvWqNsk9KohV_",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.5401928219122415,
+					"y": 0.5159604455091504
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:odTrfdq6Sm8bGYnHSbDCY",
+			"type": "arrow",
+			"fromId": "shape:tea4tOHCV4GPPy26wEgHQ",
+			"toId": "shape:8TFhK5AZBvWqNsk9KohV_",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4255047194387029,
+					"y": 0.40041310406607605
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:S1eckoMga2nFLjVWTUoJQ",
+			"type": "arrow",
+			"fromId": "shape:EhlMRQMBC2aJzqLms5Rs3",
+			"toId": "shape:gUxFuB9oTybtdyyDvNp_R",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.5401928219122415,
+					"y": 0.5159604455091504
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:EJh7KNZdqGoFaqE4RJLN5",
+			"type": "arrow",
+			"fromId": "shape:EhlMRQMBC2aJzqLms5Rs3",
+			"toId": "shape:Iuo1uRrBgLpC6594PXtKt",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.7469035859027335,
+					"y": 0.3508928148761872
+				},
+				"terminal": "end"
+			},
+			"typeName": "binding"
+		},
+		{
+			"meta": {},
+			"id": "binding:32UAVIr-lDzyQVG25ExH6",
+			"type": "arrow",
+			"fromId": "shape:cfbVvEOy0_6-Kz9851_Xh",
+			"toId": "shape:Iuo1uRrBgLpC6594PXtKt",
+			"props": {
+				"isPrecise": false,
+				"isExact": false,
+				"normalizedAnchor": {
+					"x": 0.4548760263959993,
+					"y": 0.5269649542180148
+				},
+				"terminal": "start"
+			},
+			"typeName": "binding"
+		},
+		{
+			"x": -273.7691394746571,
+			"y": 73.10905456789988,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:xft4FKuDYZS2NFeDfcUp6",
+			"type": "frame",
+			"props": {
+				"w": 2796.141488193395,
+				"h": 1301.7418473898488,
+				"name": ""
+			},
+			"parentId": "page:page",
+			"index": "aS3su",
+			"typeName": "shape"
+		}
+	]
+}
