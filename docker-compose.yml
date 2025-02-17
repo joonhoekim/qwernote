@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+    db:
+        image: postgres:16
+        container_name: qwernote-db
+        restart: always
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_USER: qwernote
+            POSTGRES_PASSWORD: qwernote
+            POSTGRES_DB: qwernote
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:
